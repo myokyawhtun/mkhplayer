@@ -8,6 +8,7 @@
 	position: relative;
 	min-height: 36px;
 	border-radius: 5px;
+	font:11px 'Tahoma', Arial, sans-serif;
 }
 .functionControl,.volumeControl{
 	color:#fff;
