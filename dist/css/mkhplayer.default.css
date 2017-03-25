@@ -9,7 +9,7 @@
 	min-height: 36px;
 	border-radius: 5px;
 }
-.functionControl,.volumeControl{
+.functionControl,.volumeControl,.main-content .functionControl, .main-content .volumeControl{
 	color:#fff;
 	text-decoration: none;
 	text-indent: -1000px;
