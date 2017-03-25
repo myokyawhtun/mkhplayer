@@ -57,7 +57,7 @@
 				}
 			});
 			music.addEventListener('loadedmetadata',function(){
-				if(music.readyState >=2){
+				if(music.readyState >=1){
 					$(currentTime).text(secsToISO(music.currentTime));
 					$(durationTime).text(secsToISO(music.duration));
 				}
