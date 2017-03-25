@@ -62,28 +62,8 @@
 				// make the clicked player to be played
 				var thisPlayer = document.getElementById($(this).attr('rel'));
 
-				if(isPlaying(thisPlayer)){
-					// if the clicked player is playing pause just this player first
-					$(this).removeClass('pauseState');
-					$(this).addClass('playState');
-					$(this).text('Play');
-					thisPlayer.pause();
-				}else{
-					$('.functionControl').each(function(e){
-						// pause all the players first
-						$(this).removeClass('pauseState');
-						$(this).addClass('playState');
-						$(this).text('Play');
-						//$(this).get(0).pause();
-					});
-					$('video,audio').each(function(e){
-						$(this).get(0).pause();
-					});
-					$(this).addClass('pauseState');
-					$(this).removeClass('playState');
-					$(this).text('Pause');
-					thisPlayer.play();
-				}
+				updateFunctionControl(thisPlayer,$(this));
+
 			});
 			// if the player has ended, change the control state
 			music.addEventListener('ended',function(){
@@ -137,13 +117,37 @@
 				diff = (currentWidth / music.duration); // differciation between progress bar width and duration
 				currentTime = currentPosX / diff;
 
-				music.play();
 				music.currentTime = currentTime;
 			}
 
 			$(window).resize(function(){
 				adjustProgressBarWidth();
 			});
+
+			function updateFunctionControl(thisPlayer, thisControl){
+				if(isPlaying(thisPlayer)){
+					// if the clicked player is playing pause just this player first
+					$(thisControl).removeClass('pauseState');
+					$(thisControl).addClass('playState');
+					$(thisControl).text('Play');
+					thisPlayer.pause();
+				}else{
+					$('.functionControl').each(function(e){
+						// pause all the players first
+						$(this).removeClass('pauseState');
+						$(this).addClass('playState');
+						$(this).text('Play');
+						//$(this).get(0).pause();
+					});
+					$('video,audio').each(function(e){
+						$(this).get(0).pause();
+					});
+					thisControl.addClass('pauseState');
+					thisControl.removeClass('playState');
+					thisControl.text('Pause');
+					thisPlayer.play();
+				}
+			}
 
 			function isPlaying(audelem) { return !audelem.paused; }
 
