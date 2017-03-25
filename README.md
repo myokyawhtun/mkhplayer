@@ -1,3 +1,6 @@
+title: MKH Player - jQuery plugin for HTML 5 video and audio
+description: Small and lightweight jQuery plugin for HTML 5 video and audio player
+
 # MKH Player - jQuery plugin for HTML 5 video and audio
 
 ## Usage
