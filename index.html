@@ -17,43 +17,13 @@
     </section>
 
     <section class="main-content">
-    	<h2>Usage</h2>
-    	<ol>
-    		<li>
-    			<h4>Import default css file</h4>
-    			<code>&lt;link rel="stylesheet" type="text/css" href="dist/css/mkhplayer.default.css"/&gt;</code>
-    		</li>
-    		<li>
-    			<h4>Place audio html tag</h4>
-    			<code>
-    				&lgt;audio id="music3" preload="metadata"&gt;
-						&lt;source src="media/interlude.mp3"&gt;
-					&lt;/audio&gt;
-    			</code>
-    		</li>
-    		<li>
-    			<h4>Import jQuery library</h4>
-    			<code>
-    				&lt;script type="text/javascript" src="dist/js/jquery-1.7.1.min.js"&gt;&lt;/script&gt;
-    			</code>
-    		</li>
-    		<li>
-    			<h4>Import mkhplayer.js</h4>
-				<code>
-					&lt;script type="text/javascript" src="dist/js/jquery.mkhplayer.js"&gt;&lt;/script&gt;
-				</code>
-    		</li>
-    		<li>
-    			<h4>Trigger mkhPlayer function</h4>
-    			<code>
-    				&lt;script type="text/javascript"&gt;
-						$(document).ready(function(){
-							$('audio').mkhPlayer();
-						});
-					&lt;/script&gt;
-    			</code>
-    		</li>
-    	</ol>
+    	<h2>Introduction</h2>
+    	<p>
+    		mkh player is small and light weight jQuery plugin for playing html5 audio and video supported files. It has custom controls like play/pause, seek bar and volume control. It also allows you to modify the color and change the icon from stylesheet.
+    	</p>
+    	<p>
+    		To use this plugin is pretty simple, import default css file, import your jQuery file, place audio or video tag along with <code>id</code> and <code>preload="metadata"</code>, import jquery.mkhplayer.js and trigger the function <code>.mkhPlayer()</code>. That's all!
+    	</p>
 		<h3>Sample Audio Player</h3>
 		<audio id="music3" preload="metadata">
 			<source src="media/interlude.mp3">
