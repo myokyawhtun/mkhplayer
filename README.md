@@ -9,7 +9,7 @@ $('video').mkhPlayer(); // for video file
 
 ## Demo
 
-You can check the demo site [https://myokyawhtun.github.io/mkhplayer].
+You can check the demo site https://myokyawhtun.github.io/mkhplayer.
 
 ### Sample
 
