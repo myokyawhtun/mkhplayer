@@ -50,12 +50,13 @@
 			$(currentTime).text(secsToISO(0));
 			$(durationTime).text(secsToISO(0));
 
-			music.addEventListener('loadeddata',function(){
+			/*music.addEventListener('loadeddata',function(){
 				if(music.readyState >=2){
 					$(currentTime).text(secsToISO(music.currentTime));
 					$(durationTime).text(secsToISO(music.duration));
 				}
 			});
+			*/
 			music.addEventListener('loadedmetadata',function(){
 				if(music.readyState >=1){
 					$(currentTime).text(secsToISO(music.currentTime));
