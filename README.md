@@ -7,6 +7,10 @@ $('audio').mkhPlayer(); // for audio file
 $('video').mkhPlayer(); // for video file
 ```
 
+## Demo
+
+You can check the demo site [https://myokyawhtun.github.io/mkhplayer].
+
 ### Sample
 
 ```html
