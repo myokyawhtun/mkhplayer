@@ -19,12 +19,18 @@
 			
 			var audioWrapper = $("<div class='audioWrapper'></div>"); // audio player wrapper div element
 			var functionControl = $("<a href='#' class='functionControl playState'>Play</a>"); // play pause button
-			var currentTime = $("<div class='currentTime'></div>"); // current time
 			
+			var currentTime = $("<div class='currentTime'></div>"); // current time
+			var currentTimeId = 'currentTime-' + id; // make current time id "currentTime-{id}"
+			$(currentTime).attr('id',currentTimeId); // set it to id
+
 			var progressWrapper = $("<div class='progressWrapper'></div>");
 			var progressBar = $("<div class='progressBar'></div>");
 			
 			var durationTime = $("<div class='durationTime'></div>"); // duration time
+			var durationTimeId = 'durationTime-' + id; // make duration time id "durationTime-{id}"
+			$(durationTime).attr('id',durationTimeId); // set it to id
+
 			var volumeControl = $("<a href='#' class='volumeControl loudState'></a>");
 			$(volumeControl).attr('rel',id);
 
@@ -45,24 +51,9 @@
 			//$(this).hide(); // hide the main element after all
 
 			var music = document.getElementById($(this).attr('id'));
+			music.addEventListener('loadeddata',updateTimestamps);
+			music.addEventListener('loadedmetadata',updateTimestamps);
 
-			// set the default seconds 00:00:00
-			$(currentTime).text(secsToISO(0));
-			$(durationTime).text(secsToISO(0));
-
-			/*music.addEventListener('loadeddata',function(){
-				if(music.readyState >=2){
-					$(currentTime).text(secsToISO(music.currentTime));
-					$(durationTime).text(secsToISO(music.duration));
-				}
-			});
-			*/
-			music.addEventListener('loadedmetadata',function(){
-				if(music.readyState >=1){
-					$(currentTime).text(secsToISO(music.currentTime));
-					$(durationTime).text(secsToISO(music.duration));
-				}
-			});
 			$(functionControl).bind('click',function(e){
 				// Play and Pause behavior for all video players
 				// only allowed one player to play and pause all other players
@@ -101,9 +92,11 @@
 				$(functionControl).text('Play');
 			});
 			music.addEventListener('timeupdate',function(){
-				$(currentTime).text(secsToISO(music.currentTime));
+				
 				var percentage = (music.currentTime/music.duration)*100;
 				updateProgressBar($(progressBar),percentage);
+				
+				updateTimestamps();
 				
 			});
 
@@ -172,6 +165,15 @@
 					$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
 					
 				}
+			}
+
+			if(music.readyState>=2 || music.readyState>=1){
+				updateTimestamps();
+			}
+
+			function updateTimestamps(){
+				$('#'+durationTimeId).text(secsToISO(music.duration));
+				$('#'+currentTimeId).text(secsToISO(music.currentTime));
 			}
 		});
 
