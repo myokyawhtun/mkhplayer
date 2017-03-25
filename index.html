@@ -19,13 +19,18 @@
     <section class="main-content">
 		<h3>Sample Audio Player</h3>
 		<audio id="music3" preload="metadata">
-				<source src="media/interlude.mp3">
+			<source src="media/interlude.mp3">
 		</audio>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<h3>Sample Video Player</h3>
+		<video id='video1' preload="metadata" width="100%">
+			<source src="media/small.mp4">
+		</video>
+		<script type="text/javascript" src="dist/js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="dist/js/jquery.mkhplayer.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('audio').mkhPlayer();
+				$('video').mkhPlayer();
 			});
 		</script>
 		<footer class="site-footer">
