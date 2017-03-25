@@ -56,7 +56,12 @@
 					$(durationTime).text(secsToISO(music.duration));
 				}
 			});
-
+			music.addEventListener('loadedmetadata',function(){
+				if(music.readyState >=2){
+					$(currentTime).text(secsToISO(music.currentTime));
+					$(durationTime).text(secsToISO(music.duration));
+				}
+			});
 			$(functionControl).bind('click',function(e){
 				// Play and Pause behavior for all video players
 				// only allowed one player to play and pause all other players
