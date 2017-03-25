@@ -45,6 +45,11 @@
 			//$(this).hide(); // hide the main element after all
 
 			var music = document.getElementById($(this).attr('id'));
+
+			// set the default seconds 00:00:00
+			$(currentTime).text(secsToISO(0));
+			$(durationTime).text(secsToISO(0));
+
 			music.addEventListener('loadeddata',function(){
 				if(music.readyState >=2){
 					$(currentTime).text(secsToISO(music.currentTime));
