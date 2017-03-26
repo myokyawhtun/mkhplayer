@@ -35,8 +35,7 @@
 			$(volumeControl).attr('rel',id);
 
 			$(progressWrapper).append($(progressBar));
-			//$(volumeWrapper).append($(volumeControl));
-
+			
 			$(functionControl).attr('rel',id);
 
 			$(audioWrapper).attr('id',playerWrapperId); // set the div's id to "{id}-player"
