@@ -56,14 +56,13 @@
 
 			$(functionControl).bind('click',function(e){
 				// Play and Pause behavior for all video players
-				// only allowed one player to play and pause all other players
-				e.preventDefault();
-				
+				// only allowed one player to play and pause all other players	
 				// make the clicked player to be played
 				var thisPlayer = document.getElementById($(this).attr('rel'));
 
 				updateFunctionControl(thisPlayer,$(this));
-
+				// instead of using preventDefault, trigger return false for anchor link event in browser
+				return false;
 			});
 			// if the player has ended, change the control state
 			music.addEventListener('ended',function(){
@@ -82,7 +81,6 @@
 
 			/* mute/unmute toggle */
 			$(volumeControl).on('click',function(e){
-				e.preventDefault();
 				var thisPlayer = document.getElementById($(this).attr('rel'));
 				if($(this).hasClass('loudState')){
 					$(this).removeClass('loudState');
@@ -93,6 +91,8 @@
 					$(this).addClass('loudState');
 					thisPlayer.muted=false;
 				}
+				// instead of using preventDefault, trigger return false for anchor link event in browser
+				return false;
 			});
 			
 			adjustProgressBarWidth();
@@ -119,10 +119,6 @@
 
 				music.currentTime = currentTime;
 			}
-
-			$(window).resize(function(){
-				adjustProgressBarWidth();
-			});
 
 			function updateFunctionControl(thisPlayer, thisControl){
 				if(isPlaying(thisPlayer)){
@@ -179,6 +175,11 @@
 				$('#'+durationTimeId).text(secsToISO(music.duration));
 				$('#'+currentTimeId).text(secsToISO(music.currentTime));
 			}
+
+			$(window).resize(function(){
+				adjustProgressBarWidth();
+			});
+			window.addEventListener('orientationchange',adjustProgressBarWidth);
 		});
 
 	}
