@@ -9,7 +9,8 @@
 	$.fn.mkhPlayer = function(options){
 
 		var settings = $.extend({
-			multiPlay: false
+			multiPlay: false,
+			theme: 'default'
 		}, options);
 
 		return this.each(function(){
@@ -17,6 +18,9 @@
 			var id = $(this).attr('id');
 			var playerWrapperId = id + '-player-wrapper'; // id to generate player wrapper "{id}-player-wrapper"
 			
+			var themeWrapper = $("<div></div>");
+			$(themeWrapper).addClass('mkhplayer-theme-' + settings.theme);
+
 			var audioWrapper = $("<div class='audioWrapper'></div>"); // audio player wrapper div element
 			var functionControl = $("<a href='#' class='functionControl playState'>Play</a>"); // play pause button
 			
@@ -45,13 +49,20 @@
 			$(audioWrapper).append($(durationTime));
 			$(audioWrapper).append($(volumeControl));
 
-			$(this).after($(audioWrapper)); // create the div element right next to original element
+			$(themeWrapper).append($(audioWrapper));
+			$(this).after($(themeWrapper)); // create the div element right next to original element
 			
 			//$(this).hide(); // hide the main element after all
 
 			var music = document.getElementById($(this).attr('id'));
-			music.addEventListener('loadeddata',updateTimestamps);
-			music.addEventListener('loadedmetadata',updateTimestamps);
+			music.addEventListener('loadeddata',function(){
+				updateTimestamps();
+				adjustProgressBarWidth();
+			});
+			music.addEventListener('loadedmetadata',function(){
+				updateTimestamps();
+				adjustProgressBarWidth();
+			});
 
 			$(functionControl).bind('click',function(e){
 				// Play and Pause behavior for all video players
@@ -156,14 +167,8 @@
 
 			function adjustProgressBarWidth(){
 				audioWrapperWidth = $(audioWrapper).width();
-				progressWrapperWidth = $(progressWrapper).width();
-				reservedControlsWidth = 186;
-				if(progressWrapperWidth + reservedControlsWidth > audioWrapperWidth){
-					$(progressWrapper).width(progressWrapperWidth-reservedControlsWidth);
-				}else{
-					$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
-					
-				}
+				reservedControlsWidth = $(functionControl).outerWidth(true)+$(currentTime).outerWidth(true)+$(durationTime).outerWidth(true)+$(volumeControl).outerWidth(true)+20;
+				$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
 			}
 
 			if(music.readyState>=2 || music.readyState>=1){
@@ -179,6 +184,7 @@
 				adjustProgressBarWidth();
 			});
 			window.addEventListener('orientationchange',adjustProgressBarWidth);
+
 		});
 
 	}
