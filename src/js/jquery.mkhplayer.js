@@ -2,7 +2,7 @@
 *
 *	Plugin Name: MKH Player
 *	Plugin Author: Myo Kyaw Htun
-*	Version: 0.1
+*	Version: 0.2.Development
 **/
 (function($) {
 	// body...
