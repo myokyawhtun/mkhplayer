@@ -16,15 +16,7 @@
 		return this.each(function(){
 
 			var id = $(this).attr('id');
-
-      //console.info(videoPlayer);
 			var playerWrapperId = id + '-player-wrapper'; // id to generate player wrapper "{id}-player-wrapper"
-<<<<<<< HEAD
-
-			var themeWrapper = $("<div></div>");
-			$(themeWrapper).addClass('mkhplayer-theme-' + settings.theme);
-=======
->>>>>>> master
 
 			var audioWrapper = $("<div class='audioWrapper'></div>"); // audio player wrapper div element
 			var functionControl = $("<a href='#' class='functionControl playState'>Play</a>"); // play pause button
@@ -54,8 +46,7 @@
 			$(audioWrapper).append($(durationTime));
 			$(audioWrapper).append($(volumeControl));
 
-			$(themeWrapper).append($(audioWrapper));
-			$(this).after($(themeWrapper)); // create the div element right next to original element
+			$(this).after($(audioWrapper)); // create the div element right next to original element
 
 			//$(this).hide(); // hide the main element after all
 
@@ -181,19 +172,13 @@
 
 			function adjustProgressBarWidth(){
 				audioWrapperWidth = $(audioWrapper).width();
-<<<<<<< HEAD
-				reservedControlsWidth = $(functionControl).outerWidth(true)+$(currentTime).outerWidth(true)+$(durationTime).outerWidth(true)+$(volumeControl).outerWidth(true)+20;
-				$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
-=======
 				progressWrapperWidth = $(progressWrapper).width();
 				reservedControlsWidth = 186;
 				if(progressWrapperWidth + reservedControlsWidth > audioWrapperWidth){
 					$(progressWrapper).width(progressWrapperWidth-reservedControlsWidth);
 				}else{
 					$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
-
 				}
->>>>>>> master
 			}
 
 			if(music.readyState>=2 || music.readyState>=1){
