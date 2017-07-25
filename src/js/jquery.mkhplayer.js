@@ -14,23 +14,28 @@
 		}, options);
 
 		return this.each(function(){
-			
+
 			var id = $(this).attr('id');
+
+      //console.info(videoPlayer);
 			var playerWrapperId = id + '-player-wrapper'; // id to generate player wrapper "{id}-player-wrapper"
-			
+<<<<<<< HEAD
+
 			var themeWrapper = $("<div></div>");
 			$(themeWrapper).addClass('mkhplayer-theme-' + settings.theme);
+=======
+>>>>>>> master
 
 			var audioWrapper = $("<div class='audioWrapper'></div>"); // audio player wrapper div element
 			var functionControl = $("<a href='#' class='functionControl playState'>Play</a>"); // play pause button
-			
+
 			var currentTime = $("<div class='currentTime'></div>"); // current time
 			var currentTimeId = 'currentTime-' + id; // make current time id "currentTime-{id}"
 			$(currentTime).attr('id',currentTimeId); // set it to id
 
 			var progressWrapper = $("<div class='progressWrapper'></div>");
 			var progressBar = $("<div class='progressBar'></div>");
-			
+
 			var durationTime = $("<div class='durationTime'></div>"); // duration time
 			var durationTimeId = 'durationTime-' + id; // make duration time id "durationTime-{id}"
 			$(durationTime).attr('id',durationTimeId); // set it to id
@@ -39,7 +44,7 @@
 			$(volumeControl).attr('rel',id);
 
 			$(progressWrapper).append($(progressBar));
-			
+
 			$(functionControl).attr('rel',id);
 
 			$(audioWrapper).attr('id',playerWrapperId); // set the div's id to "{id}-player"
@@ -51,7 +56,7 @@
 
 			$(themeWrapper).append($(audioWrapper));
 			$(this).after($(themeWrapper)); // create the div element right next to original element
-			
+
 			//$(this).hide(); // hide the main element after all
 
 			var music = document.getElementById($(this).attr('id'));
@@ -64,13 +69,22 @@
 				adjustProgressBarWidth();
 			});
 
+        $(this).click( function(){
+          if(isPlaying) {
+            updateFunctionControl(this, $(functionControl));
+          }
+        });
+
 			$(functionControl).bind('click',function(e){
 				// Play and Pause behavior for all video players
-				// only allowed one player to play and pause all other players	
+				// only allowed one player to play and pause all other players
 				// make the clicked player to be played
 				var thisPlayer = document.getElementById($(this).attr('rel'));
 
+        //var video = document.getElementById($(this).attr('id'));
+
 				updateFunctionControl(thisPlayer,$(this));
+
 				// instead of using preventDefault, trigger return false for anchor link event in browser
 				return false;
 			});
@@ -81,12 +95,12 @@
 				$(functionControl).text('Play');
 			});
 			music.addEventListener('timeupdate',function(){
-				
+
 				var percentage = (music.currentTime/music.duration)*100;
 				updateProgressBar($(progressBar),percentage);
-				
+
 				updateTimestamps();
-				
+
 			});
 
 			/* mute/unmute toggle */
@@ -104,7 +118,7 @@
 				// instead of using preventDefault, trigger return false for anchor link event in browser
 				return false;
 			});
-			
+
 			adjustProgressBarWidth();
 
 			/* progress bar touch down or mouse down handler */
@@ -123,7 +137,7 @@
 				currentWidth = obj.width();
 				var percentage = (currentPosX/currentWidth) * 100;
 				updateProgressBar($(progressBar),percentage);
-				
+
 				diff = (currentWidth / music.duration); // differciation between progress bar width and duration
 				currentTime = currentPosX / diff;
 
@@ -167,8 +181,19 @@
 
 			function adjustProgressBarWidth(){
 				audioWrapperWidth = $(audioWrapper).width();
+<<<<<<< HEAD
 				reservedControlsWidth = $(functionControl).outerWidth(true)+$(currentTime).outerWidth(true)+$(durationTime).outerWidth(true)+$(volumeControl).outerWidth(true)+20;
 				$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
+=======
+				progressWrapperWidth = $(progressWrapper).width();
+				reservedControlsWidth = 186;
+				if(progressWrapperWidth + reservedControlsWidth > audioWrapperWidth){
+					$(progressWrapper).width(progressWrapperWidth-reservedControlsWidth);
+				}else{
+					$(progressWrapper).width(audioWrapperWidth-reservedControlsWidth);
+
+				}
+>>>>>>> master
 			}
 
 			if(music.readyState>=2 || music.readyState>=1){
@@ -188,6 +213,5 @@
 		});
 
 	}
-	
-}(jQuery));
 
+}(jQuery));
