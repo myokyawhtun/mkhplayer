@@ -8,6 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/mkhplayer/assets/css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="src/css/mkhplayer.default.css"/>
+	<link rel="stylesheet" type="text/css" href="src/css/mkhplayer.green.css"/>
 </head>
 <body>
 	<section class="page-header">
@@ -37,7 +38,9 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('audio').mkhPlayer();
-				$('video').mkhPlayer();
+				$('video').mkhPlayer({
+					theme: 'green'
+				});
 			});
 		</script>
 		<footer class="site-footer">
