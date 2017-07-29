@@ -57,11 +57,11 @@
 				adjustProgressBarWidth();
 			});
 
-        $(this).click( function(){
-          if(isPlaying) {
-            updateFunctionControl(this, $(functionControl));
-          }
-        });
+			$(this).click( function(){
+				if(isPlaying) {
+					updateFunctionControl(this, $(functionControl));
+				}
+			});
 
 			$(functionControl).bind('click',function(e){
 				// Play and Pause behavior for all video players
