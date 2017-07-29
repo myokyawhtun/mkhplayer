@@ -5,7 +5,6 @@
 *	Version: 0.2.Development
 **/
 (function($) {
-	// body...
 	$.fn.mkhPlayer = function(options){
 
 		var settings = $.extend({
@@ -48,8 +47,6 @@
 
 			$(this).after($(audioWrapper)); // create the div element right next to original element
 
-			//$(this).hide(); // hide the main element after all
-
 			var music = document.getElementById($(this).attr('id'));
 			music.addEventListener('loadeddata',function(){
 				updateTimestamps();
@@ -71,8 +68,6 @@
 				// only allowed one player to play and pause all other players
 				// make the clicked player to be played
 				var thisPlayer = document.getElementById($(this).attr('rel'));
-
-        //var video = document.getElementById($(this).attr('id'));
 
 				updateFunctionControl(thisPlayer,$(this));
 
@@ -148,7 +143,6 @@
 						$(this).removeClass('pauseState');
 						$(this).addClass('playState');
 						$(this).text('Play');
-						//$(this).get(0).pause();
 					});
 					$('video,audio').each(function(e){
 						$(this).get(0).pause();
