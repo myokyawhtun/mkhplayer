@@ -46,7 +46,7 @@
 			$(audioWrapper).append($(volumeControl));
 
 			$(this).after($(audioWrapper)); // create the div element right next to original element
-			
+			$(this).attr('preload','metadata'); // add preload metadata
 			//$(this).hide(); // hide the main element after all
 
 			var music = document.getElementById($(this).attr('id'));
